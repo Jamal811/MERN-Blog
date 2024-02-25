@@ -1,0 +1,8 @@
+1. install vite react
+2. install tailwind css and configure it
+3. create pages and set routes install react-router-dom
+4. create header in components folder
+5. install npm i flowbite-react for creating header 
+it is an tailwind base UI liberary
+6. install react-icons for the header
+
