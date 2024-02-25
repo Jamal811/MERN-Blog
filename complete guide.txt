@@ -5,4 +5,16 @@
 5. install npm i flowbite-react for creating header 
 it is an tailwind base UI liberary
 6. install react-icons for the header
+7. create backend seperate folder inside root directory
+npm init create api folder keep index.js in that and 
+change type to mudule instead of comon js in package jason
+8. install express and create server and run in index.js 
+using node api/index.js
+9. install nodemon and change the scripts in package file
+add two scripts one dev and other start one nodemon and other
+node, node for deployement and nodemon for development
+now run npm run dev.
+10. mode gitignore from client to root
+
+
 
