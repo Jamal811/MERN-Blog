@@ -19,7 +19,9 @@ now run npm run dev.
 project in the mongodb website and create database and connect
 through driver to the project,
 12. install dotenv in root folder and hide connection string
-13. create user model
+13. create user model in models folder
+14. create test api route, by creating routes, controllers folders
+
 
 
 
