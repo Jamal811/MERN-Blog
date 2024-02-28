@@ -15,7 +15,11 @@ add two scripts one dev and other start one nodemon and other
 node, node for deployement and nodemon for development
 now run npm run dev.
 10. move gitignore from client to root
-11. connect to the database install mongoose
+11. connect to the database install mongoose and create new
+project in the mongodb website and create database and connect
+through driver to the project,
+12. install dotenv in root folder and hide connection string
+13. create user model
 
 
 
