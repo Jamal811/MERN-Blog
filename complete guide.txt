@@ -14,7 +14,8 @@ using node api/index.js
 add two scripts one dev and other start one nodemon and other
 node, node for deployement and nodemon for development
 now run npm run dev.
-10. mode gitignore from client to root
+10. move gitignore from client to root
+11. connect to the database install mongoose
 
 
 
