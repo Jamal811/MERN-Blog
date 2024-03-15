@@ -25,3 +25,4 @@ through driver to the project,
 16. install bcrypt js for hashing password and use it inside the signup function inside auth controller
 17. add middleware and function to handle the errors, create middleware in the index file and create utils folder and inside that create error file
 18. create signup page UI
+19. add functionaly of signup page, first track changes in the input by on change event listner than call function called handle change for all inputs same onchange, track changes of each by using its id, created usestate of formdata to track changes
