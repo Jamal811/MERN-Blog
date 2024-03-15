@@ -21,7 +21,5 @@ through driver to the project,
 12. install dotenv in root folder and hide connection string
 13. create user model in models folder
 14. create test api route, by creating routes, controllers folders
-
-
-
-
+15. create signup api route by creating auth routes, and auth controllers files, and import file like auth controller in the auth route and add auth route in index file
+16. install bcrypt js for hashing password and use it inside the signup function inside auth controller
