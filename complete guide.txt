@@ -28,3 +28,5 @@ through driver to the project,
 19. add functionaly of signup page, first track changes in the input by on change event listner than call function called handle change for all inputs same onchange, track changes of each by using its id, created usestate of formdata to track changes, also create onsubmit for form and add proxy in vote config file for adress to be matched, add errors and loadinf=g stats
 20. create footer now
 21. create signin api route, and set cookie inside browser to checck if the person authenticated or not install jsonwebtoken to authenticate the user, also create jwtsecret key and store in .env
+22. create signin page ui now
+23. save the response of user infromation from sign in to global state redux, setup redux toolkit

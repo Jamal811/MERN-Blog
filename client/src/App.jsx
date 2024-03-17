@@ -4,9 +4,9 @@ import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import SignUp from "./pages/SignUp";
-import Signin from "./pages/Signin";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Signin from "./pages/Signin";
 function App() {
   return (
     <BrowserRouter>
