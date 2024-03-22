@@ -1,11 +1,21 @@
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from "../../redux/user/userSlice";
 
 const Signin = () => {
   const [formData, setFormData] = useState({});
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const { loading, error: errorMessage } = useSelector((state) => state.user); //new way with the redux
+
+  // const [errorMessage, setErrorMessage] = useState(null); // oder way before redux
+  // const [loading, setLoading] = useState(false); // oder way before redux
+
+  const dispatch = useDispatch(); //initialize dispatch
   const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -13,11 +23,13 @@ const Signin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      return setErrorMessage("Please fill out all fields.");
+      return dispatch(signInFailure("Please fill out all fields.")); // new way after redux
+      // return setErrorMessage("Please fill out all fields."); oder way before redux
     }
     try {
-      setLoading(true);
-      setErrorMessage(null);
+      dispatch(signInStart()); //new way with the redux
+      // setLoading(true); older way without reduc
+      // setErrorMessage(null);
       const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -25,15 +37,18 @@ const Signin = () => {
       });
       const data = await res.json();
       if (data.success === false) {
-        return setErrorMessage(data.message);
+        dispatch(signInFailure(data.message)); //new way with the redux
+        // return setErrorMessage(data.message);  // oder way before redux
       }
-      setLoading(false);
+      // setLoading(false);
       if (res.ok) {
+        dispatch(signInSuccess(data)); //new way with the redux, before this here was nothing
         navigate("/");
       }
     } catch (error) {
-      setErrorMessage(error.message);
-      setLoading(false);
+      dispatch(signInFailure(error.message)); //new way with the redux
+      // setErrorMessage(error.message);  // oder way before redux
+      // setLoading(false);  // oder way before redux
     }
   };
   return (

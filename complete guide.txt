@@ -30,3 +30,8 @@ through driver to the project,
 21. create signin api route, and set cookie inside browser to checck if the person authenticated or not install jsonwebtoken to authenticate the user, also create jwtsecret key and store in .env
 22. create signin page ui now
 23. save the response of user infromation from sign in to global state redux, setup redux toolkit
+1- Create a Redux Store
+2- Provide the Redux Store to React
+3- Create a Redux State Slice (userSlice and reducers/functions)
+4- Add Slice Reducers to the Store
+now import (signinstart, signinsucces, signinfailure) it in signin page, in order to use them use dispatch
