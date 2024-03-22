@@ -38,3 +38,4 @@ now import (signinstart, signinsucces, signinfailure) it in signin page, in orde
 22- add redux persist to save info localy. not to lose it on refresh
 23-create OAuth jsx file and create api route for google auth to login through google
 24- updating header section get the userprofile image
+25- create thesme folder and slide inside redux
