@@ -36,3 +36,4 @@ through driver to the project,
 4- Add Slice Reducers to the Store
 now import (signinstart, signinsucces, signinfailure) it in signin page, in order to use them use dispatch
 22- add redux persist to save info localy. not to lose it on refresh
+23-create OAuth jsx file and create api route for google auth to login through google
