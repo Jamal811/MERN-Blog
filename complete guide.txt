@@ -35,3 +35,4 @@ through driver to the project,
 3- Create a Redux State Slice (userSlice and reducers/functions)
 4- Add Slice Reducers to the Store
 now import (signinstart, signinsucces, signinfailure) it in signin page, in order to use them use dispatch
+22- add redux persist to save info localy. not to lose it on refresh
