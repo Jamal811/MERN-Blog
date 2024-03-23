@@ -43,3 +43,4 @@ now import (signinstart, signinsucces, signinfailure) it in signin page, in orde
 27- sperate tabs from search bar or get it, in dashboard file
 28- create UI of sidebar
 29- create UI of profile
+30- upload image functionality in the profile page (use react circular progress bar package)
