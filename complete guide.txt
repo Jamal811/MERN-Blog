@@ -44,3 +44,4 @@ now import (signinstart, signinsucces, signinfailure) it in signin page, in orde
 28- create UI of sidebar
 29- create UI of profile
 30- upload image functionality in the profile page (use react circular progress bar package)
+31- work on edit/update api route of the user (first check if the person is authenticate or not from cookies) inside varifyUser file and install cookie parser in the backend and initialize the cookie parser in the index file (cookie parser used to extract cookie from the browser)
