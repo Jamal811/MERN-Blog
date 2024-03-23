@@ -41,4 +41,5 @@ now import (signinstart, signinsucces, signinfailure) it in signin page, in orde
 25- create thesme folder and slide inside redux than create themeprovider component and wrap app inside this in main .jsx, transfer this functionality and use inside the header
 26- make dashboard private by making new component and wrap dashboard inside this component in the app file
 27- sperate tabs from search bar or get it, in dashboard file
-28-create UI of sidebar
+28- create UI of sidebar
+29- create UI of profile
