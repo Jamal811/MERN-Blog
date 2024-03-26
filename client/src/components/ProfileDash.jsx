@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
 import { Alert, Button, TextInput } from "flowbite-react";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   getDownloadURL,
   getStorage,
@@ -10,6 +10,12 @@ import {
 import { app } from "../firebase";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import {
+  updateStart,
+  updateSuccess,
+  updateFailure,
+} from "../../redux/user/userSlice";
+import { useDispatch } from "react-redux";
 
 const ProfileDash = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -17,7 +23,12 @@ const ProfileDash = () => {
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
+  const [imageFileUploading, setimageFileUploading] = useState(false);
+  const [updateUserSuccess, setupdateUserSuccess] = useState(null);
+  const [updateUserError, setupdateUserError] = useState(null);
+  const [formData, setFormData] = useState({});
   const filePickerRef = useRef();
+  const dispatch = useDispatch();
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -25,7 +36,6 @@ const ProfileDash = () => {
       setImageFileUrl(URL.createObjectURL(file));
     }
   };
-
   useEffect(() => {
     if (imageFile) {
       uploadImage();
@@ -33,17 +43,9 @@ const ProfileDash = () => {
   }, [imageFile]);
 
   const uploadImage = async () => {
-    // service firebase.storage {
-    //   match /b/{bucket}/o {
-    //     match /{allPaths=**} {
-    //       allow read;
-    //       allow write: if
-    //       request.resource.size < 2 * 1024 * 1024 &&
-    //       request.resource.contentType.matches('image/.*')
-    //     }
-    //   }
-    // }
+    setimageFileUploading(true);
     setImageFileUploadError(null);
+
     const storage = getStorage(app);
     const fileName = new Date().getTime() + imageFile.name;
     const storageRef = ref(storage, fileName);
@@ -67,14 +69,59 @@ const ProfileDash = () => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageFileUrl(downloadURL);
+          setFormData({ ...formData, profilePicture: downloadURL });
+          setimageFileUploading(false);
         });
       }
     );
   };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setupdateUserError(null);
+    setupdateUserSuccess(null);
+    if (Object.keys(formData).length === 0) {
+      setupdateUserError("No Changes made");
+      return;
+    }
+
+    if (imageFileUploading) {
+      setupdateUserError("Please wait for image to upload");
+
+      return;
+    }
+
+    try {
+      dispatch(updateStart());
+      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        dispatch(updateFailure(data.message));
+        setupdateUserError(data.message);
+      } else {
+        dispatch(updateSuccess(data));
+        setupdateUserSuccess("User's profile updated successfully");
+      }
+    } catch (error) {
+      dispatch(updateFailure(error.message));
+      setupdateUserError(error.message);
+    }
+  };
+
   return (
     <div className="max-w-lg mx-auto p-3 w-full">
       <h1>Profile</h1>
-      <form className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="file"
           accept="image/*"
@@ -120,19 +167,27 @@ const ProfileDash = () => {
         {imageFileUploadError && (
           <Alert color="failure">{imageFileUploadError}</Alert>
         )}
+
         <TextInput
           type="text"
           id="username"
           placeholder="username"
           defaultValue={currentUser.username}
+          onChange={handleChange}
         />
         <TextInput
           type="email"
           id="email"
           placeholder="email"
           defaultValue={currentUser.email}
+          onChange={handleChange}
         />
-        <TextInput type="password" id="password" placeholder="password" />
+        <TextInput
+          type="password"
+          id="password"
+          placeholder="password"
+          onChange={handleChange}
+        />
         <Button type="submit" gradientDuoTone="purpleToBlue">
           Update
         </Button>
@@ -141,6 +196,16 @@ const ProfileDash = () => {
         <span className="cursor-pointer">Delete Account</span>
         <span className="cursor-pointer">Sign Out</span>
       </div>
+      {updateUserSuccess && (
+        <Alert color="success" className="mt-5">
+          {updateUserSuccess}
+        </Alert>
+      )}
+      {updateUserError && (
+        <Alert color="failure" className="mt-5">
+          {updateUserError}
+        </Alert>
+      )}
     </div>
   );
 };
