@@ -47,3 +47,4 @@ now import (signinstart, signinsucces, signinfailure) it in signin page, in orde
 31- work on edit/update api route of the user (first check if the person is authenticate or not from cookies) inside varifyUser file and install cookie parser in the backend and initialize the cookie parser in the index file (cookie parser used to extract cookie from the browser)
 32- update user profile page and connect to backend need to have form data peice of state to get all the four data and than update it, use onchange in inputs and onsubmit for form, create new reducers in userSlice for update functionality
 33- delete user api route
+34- delete user account functionality from dashprofile page, onchange on delete account button popup window create, delete user from redux as well, create a model as well for confirm delete and also create reducers for delete
