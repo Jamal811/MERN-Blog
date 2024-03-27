@@ -49,3 +49,4 @@ now import (signinstart, signinsucces, signinfailure) it in signin page, in orde
 33- delete user api route
 34- delete user account functionality from dashprofile page, onchange on delete account button popup window create, delete user from redux as well, create a model as well for confirm delete and also create reducers for delete
 35 - add signout functionality create api route to clear cookie of user and remove from redux as well add this is header and sidedash
+36- add admin functionality to user, first add in user model and add isadmin in cookie as well to get informed the browaer that the user is admin so midify signin request
