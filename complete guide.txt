@@ -56,3 +56,5 @@ Note sm:flex-row means the small size and above
 
 38-  create a post model and create a post api route only admin can create post
 
+39 - create upload post image functionality
+
