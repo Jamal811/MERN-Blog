@@ -58,6 +58,7 @@ Note sm:flex-row means the small size and above
 
 39 - create upload post image functionality
 
-40- wor 
-k on create post functionality/ publish
+40- work on create post functionality/ publish
+
+41- add posts section to the dashboard first add button for the post in the sidebar when clicj on posts button render another component called Dashpost so create that and import it in dashboard page
 
