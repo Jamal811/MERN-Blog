@@ -62,3 +62,5 @@ Note sm:flex-row means the small size and above
 
 41- add posts section to the dashboard first add button for the post in the sidebar when clicj on posts button render another component called Dashpost so create that and import it in dashboard page
 
+42- create get posts api route to fecth all posts
+
